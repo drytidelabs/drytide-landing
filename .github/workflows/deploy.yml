@@ -40,6 +40,9 @@ jobs:
           REMOTE_DIR: ${{ env.REMOTE_DIR }}
           LOCAL_DIR: ${{ env.LOCAL_DIR }}
         run: |
+          # Wait a few seconds for Tailscale MagicDNS to settle
+          sleep 5
+          
           rsync -acvz --delete \
           -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" \
             --exclude='.git' \
