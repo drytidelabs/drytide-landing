@@ -40,13 +40,6 @@ jobs:
           REMOTE_DIR: ${{ env.REMOTE_DIR }}
           LOCAL_DIR: ${{ env.LOCAL_DIR }}
         run: |
-          # Check Tailscale status for debugging
-          tailscale status
-          
-          # Resolve Tailscale IP directly to bypass MagicDNS issues
-          HOST_IP=$(tailscale ip -4 $HOST || echo $HOST)
-          echo "Connecting to IP: $HOST_IP"
-          
           rsync -acvz --delete \
           -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" \
             --exclude='.git' \
@@ -54,4 +47,20 @@ jobs:
             --exclude='.gitignore' \
             --exclude='.DS_Store' \
             "$LOCAL_DIR/" \
-            "$USER@$HOST_IP:$REMOTE_DIR/"
+            "$USER@$HOST:$REMOTE_DIR/"
+      - name: Deploy site files via rsync
+        env:
+          HOST: ${{ secrets.SERVER_TAILSCALE_HOST }}
+          USER: ${{ secrets.SERVER_USER }}
+          REMOTE_DIR: ${{ env.REMOTE_DIR }}
+          LOCAL_DIR: ${{ env.LOCAL_DIR }}
+        run: |
+          rsync -rlvz --delete \
+            --no-owner --no-group --no-perms --no-times \
+            -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='.gitignore' \
+            --exclude='.DS_Store' \
+            "$LOCAL_DIR/" \
+            "$USER@$HOST:$REMOTE_DIR/"
