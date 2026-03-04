@@ -1,0 +1,50 @@
+name: Deploy Drytiders to Anton
+on:
+  push:
+    branches: [ "main" ]
+
+env:
+  REMOTE_DIR: /mnt/ssd/www/drytide-landing
+  LOCAL_DIR: .
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write      # required for OIDC
+      contents: read
+    steps:
+      # -------------------------------------------------
+      # 1. Checkout repo
+      # -------------------------------------------------
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      # -------------------------------------------------
+      # 2. Join Tailscale via OIDC (no authkey)
+      # -------------------------------------------------
+      - name: Connect via Tailscale
+        uses: tailscale/github-action@v3
+        with:
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+          tags: tag:github
+          
+      # -------------------------------------------------
+      # 3. Deploy site files via rsync
+      # -------------------------------------------------
+      - name: Deploy site files ls via rsync
+        env:
+          HOST: ${{ secrets.SERVER_TAILSCALE_HOST }}
+          USER: ${{ secrets.SERVER_USER }}
+          REMOTE_DIR: ${{ env.REMOTE_DIR }}
+          LOCAL_DIR: ${{ env.LOCAL_DIR }}
+        run: |
+          rsync -acvz --delete \
+          -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='.gitignore' \
+            --exclude='.DS_Store' \
+            "$LOCAL_DIR/" \
+            "$USER@$HOST:$REMOTE_DIR/"
