@@ -334,7 +334,6 @@ footer {
   justify-content: space-between;
   align-items: baseline;
   gap: var(--space-lg);
-  /* border-top: 2px solid var(--fg); */
   padding-top: var(--space-md); 
 }
 
