@@ -38,6 +38,12 @@
   padding: 0;
 }
 
+img, picture, video, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
 /* === Base === */
 html {
   font-size: 16px;
