@@ -10,7 +10,7 @@
   --fg:      #F2F2F2;
   --bg-alt:  #111111;
   --green:  #018301;
-  --blue:   #0047AB;
+  --blue:   #005ad8;
   --red:    #AB0000;
 
   /* Typography */
@@ -207,7 +207,7 @@ header {
   height: 160px;
   border: 2px solid var(--fg);
   object-fit: cover;
-  filter: grayscale(75%);
+  filter: grayscale(50%);
 }
 
 @media (max-width: 600px) {
