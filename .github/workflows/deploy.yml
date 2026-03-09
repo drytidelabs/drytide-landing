@@ -1,7 +1,7 @@
-name: Deploy Drytiders to Anton
+name: Deploy drytide.co/labs.drytide.co to Anton
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 env:
   REMOTE_DIR: /mnt/ssd/www/drytide-landing
@@ -24,11 +24,11 @@ jobs:
       # 2. Join Tailscale via OIDC (no authkey)
       # -------------------------------------------------
       - name: Connect via Tailscale
-        uses: tailscale/github-action@v3
+        uses: tailscale/github-action@v4
         with:
           oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
-          tags: tag:github
+          tags: tag:ci
           
       # -------------------------------------------------
       # 3. Deploy site files via rsync
@@ -42,22 +42,6 @@ jobs:
         run: |
           rsync -acvz --delete \
           -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" \
-            --exclude='.git' \
-            --exclude='.github' \
-            --exclude='.gitignore' \
-            --exclude='.DS_Store' \
-            "$LOCAL_DIR/" \
-            "$USER@$HOST:$REMOTE_DIR/"
-      - name: Deploy site files via rsync
-        env:
-          HOST: ${{ secrets.SERVER_TAILSCALE_HOST }}
-          USER: ${{ secrets.SERVER_USER }}
-          REMOTE_DIR: ${{ env.REMOTE_DIR }}
-          LOCAL_DIR: ${{ env.LOCAL_DIR }}
-        run: |
-          rsync -rlvz --delete \
-            --no-owner --no-group --no-perms --no-times \
-            -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" \
             --exclude='.git' \
             --exclude='.github' \
             --exclude='.gitignore' \
