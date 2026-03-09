@@ -1,7 +1,7 @@
 name: Deploy drytide.co/labs.drytide.co to Anton
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 env:
   REMOTE_DIR: /mnt/ssd/www/drytide-landing
