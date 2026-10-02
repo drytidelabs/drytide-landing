@@ -60,7 +60,7 @@ h1 em { color: var(--acid); font-style: normal; }
 .project--private .project-bottom, .project--private .project-topline { border-color: rgba(255,255,255,0.35); }
 .project-topline { border-bottom: 1px solid rgba(25,26,24,0.32); display: flex; font-family: var(--font-mono); font-size: 0.56rem; justify-content: space-between; letter-spacing: 0.04em; padding-bottom: 12px; text-transform: uppercase; }
 .status { color: #3c3c38; font-weight: 700; }
-.status--live { color: #20702c; }.status--paused { color: #9f4a1d; }.status--archive { color: #716e68; }.status--private { color: #fff; }
+.status--live { color: #20702c; }.status--active { color: #245e8f; }.status--paused { color: #9f4a1d; }.status--archive { color: #716e68; }.status--private { color: #fff; }
 .project h3 { font-family: var(--font-display); font-size: clamp(2rem, 3.2vw, 3.35rem); letter-spacing: -0.075em; line-height: 0.82; margin: auto 0 12px; text-transform: uppercase; }
 .project p { font-size: 0.94rem; line-height: 1.4; margin-bottom: 20px; max-width: 31ch; }
 .project-bottom { border-top: 1px solid rgba(25,26,24,0.32); display: flex; font-family: var(--font-mono); font-size: 0.55rem; gap: 12px; justify-content: space-between; letter-spacing: 0.04em; padding-top: 12px; text-transform: uppercase; }
