@@ -42,6 +42,7 @@ h1 em { color: var(--acid); font-style: normal; }
 .signal-row div:not(:first-child) { padding-left: 16px; }
 .signal-row div:last-child { border-right: 0; }
 .signal-row dt { color: var(--acid); font-family: var(--font-display); font-size: clamp(2.1rem, 4vw, 4.4rem); letter-spacing: -0.08em; line-height: 0.85; }
+.signal-row dt img { display: block; height: 0.78em; width: auto; }
 .signal-row dd { color: var(--muted); font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.06em; margin: 8px 0 0; text-transform: uppercase; }
 
 .work { background: var(--paper); color: var(--ink); padding: 96px 32px 112px; }
