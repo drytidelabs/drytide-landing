@@ -73,8 +73,8 @@ h1 em { color: var(--acid); font-style: normal; }
 .manifesto > div, .manifesto > p { grid-column: 2; }
 .manifesto > p { color: rgba(255,255,255,0.82); font-size: clamp(1.05rem, 1.7vw, 1.35rem); line-height: 1.45; margin: 0; max-width: 48ch; }
 
-.practice { background: #e8e4dc; color: var(--ink); display: grid; grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.28fr); gap: clamp(36px, 7vw, 112px); padding: clamp(72px, 10vw, 148px) 32px; }
-.practice-portrait { align-self: start; position: sticky; top: 28px; }
+.practice { background: #e8e4dc; color: var(--ink); display: grid; grid-template-columns: minmax(220px, 0.48fr) minmax(0, 1.52fr); gap: clamp(36px, 7vw, 112px); padding: clamp(72px, 10vw, 148px) 32px; }
+.practice-portrait { align-self: start; max-width: 320px; position: sticky; top: 28px; }
 .practice-portrait img { aspect-ratio: 1 / 1.15; display: block; filter: grayscale(1); object-fit: cover; width: 100%; }
 .practice-portrait p { border-top: 1px solid rgba(25,26,24,0.32); font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.08em; line-height: 1.5; margin: 12px 0 0; padding-top: 12px; text-transform: uppercase; }
 .practice-copy { max-width: 750px; }
