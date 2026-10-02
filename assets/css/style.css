@@ -12,6 +12,9 @@
   --green:  #22C822;
   --blue:   #4D90E8;
   --red:    #E63030;
+  --yellow: #E2BE32;
+  --purple: #BB8CFF;
+  --gray:   #9B9B9B;
 
   /* Typography */
   --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro',
@@ -157,6 +160,10 @@ header {
   margin-bottom: var(--space-xs);
 }
 
+h1.wordmark {
+  margin-top: 0;
+}
+
 .tagline {
   font-size: 1rem;
   font-weight: 700;
@@ -219,6 +226,20 @@ header {
 /* === Proof (Project Grid) === */
 .proof {
   padding: var(--space-xl) 0;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.section-heading p {
+  max-width: 48ch;
+  font-size: 0.875rem;
+  opacity: 0.7;
 }
 
 .grid {
@@ -286,6 +307,64 @@ header {
 .badge--green { --badge-color: var(--green); }
 .badge--blue  { --badge-color: var(--blue); }
 .badge--red   { --badge-color: var(--red); }
+.badge--yellow { --badge-color: var(--yellow); }
+.badge--purple { --badge-color: var(--purple); }
+.badge--gray { --badge-color: var(--gray); }
+
+/* === Field Journal === */
+.field-journal {
+  padding: var(--space-xl) 0;
+  border-top: 2px solid var(--fg);
+}
+
+.journal-groups {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.journal-group h3 {
+  margin-bottom: var(--space-md);
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.journal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+.journal-card {
+  min-width: 0;
+  border-top: 1px solid var(--fg);
+  padding-top: var(--space-sm);
+}
+
+.journal-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+.journal-title h4 {
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.journal-card p {
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.journal-tags {
+  margin: var(--space-xs) 0 var(--space-sm);
+  color: var(--blue);
+  font-size: 0.75rem !important;
+  letter-spacing: 0.06em;
+}
 
 /* === Philosophy === */
 .philosophy {
@@ -312,6 +391,46 @@ header {
 
 .philosophy p {
   max-width: 65ch;
+}
+
+.principles {
+  margin: var(--space-lg) 0;
+  padding-left: 1.2em;
+}
+
+.principles li + li {
+  margin-top: var(--space-xs);
+}
+
+/* === Now / Next === */
+.now-next {
+  padding: var(--space-xl) 0;
+  border-bottom: 2px solid var(--fg);
+}
+
+.now-next h2 {
+  margin-bottom: var(--space-lg);
+}
+
+.now-next dl {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.now-next dl div {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: var(--space-md);
+}
+
+.now-next dt {
+  color: var(--green);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.now-next dd {
+  margin: 0;
 }
 
 /* === Divider === */
@@ -367,7 +486,9 @@ footer {
   }
 
   .proof,
-  .philosophy {
+  .field-journal,
+  .philosophy,
+  .now-next {
     padding: var(--space-lg) 0;
   }
 
@@ -383,6 +504,16 @@ footer {
   }
 
   .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .journal-grid {
     grid-template-columns: 1fr;
   }
 
@@ -416,5 +547,10 @@ footer {
 
   .philosophy p {
     max-width: 100%;
+  }
+
+  .now-next dl div {
+    grid-template-columns: 1fr;
+    gap: var(--space-xs);
   }
 }
